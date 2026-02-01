@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine 💘</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  height:100vh;
+  background:linear-gradient(180deg,#ffb6c1,#ffe4ec);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  font-family:'Poppins',sans-serif;
+}
+
+.container{
+  width:90%;
+  max-width:360px;
+  background:rgba(255,255,255,.96);
+  border-radius:32px;
+  padding:24px;
+  text-align:center;
+  box-shadow:0 20px 60px rgba(255,77,109,.35);
+  animation:pop .8s ease;
+}
+
+@keyframes pop{
+  from{transform:scale(.85);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+
+h1{color:#ff4d6d}
+p{color:#666;font-size:.95rem}
+
+.love-bar{
+  margin:18px 0;
+  height:22px;
+  background:#ffe3ec;
+  border-radius:50px;
+  overflow:hidden;
+}
+.love-fill{
+  width:15%;
+  height:100%;
+  background:linear-gradient(90deg,#ff4d6d,#ff85a2);
+  border-radius:50px;
+  transition:.8s;
+}
+
+.buttons{position:relative;height:70px}
+button{
+  padding:13px 26px;
+  border-radius:40px;
+  border:none;
+  font-size:1rem;
+}
+#yesBtn{
+  background:#ff4d6d;
+  color:#fff;
+}
+#noBtn{
+  background:#eee;
+  color:#666;
+  position:absolute;
+}
+
+.message{
+  display:none;
+  margin-top:15px;
+  color:#ff4d6d;
+  font-size:1.1rem;
+}
+
+.popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.35);
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
+.popup-content{
+  background:#fff;
+  width:85%;
+  max-width:320px;
+  padding:22px;
+  border-radius:25px;
+  text-align:center;
+}
+.letter{
+  font-family:'Dancing Script',cursive;
+  font-size:1.2rem;
+  color:#555;
+  line-height:1.6;
+  white-space:pre-line;
+}
+.close{
+  margin-top:15px;
+  background:#ff4d6d;
+  color:#fff;
+}
+
+.final-love{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(180deg,#ffd6e8,#fff0f6);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  text-align:center;
+  color:#ff4d6d;
+  font-family:'Dancing Script',cursive;
+  font-size:2.4rem;
+}
+.final-love span{font-size:1.5rem;margin-top:12px;}
+
+.heart{
+  position:fixed;
+  top:-10px;
+  font-size:18px;
+  animation:fall linear forwards;
+}
+@keyframes fall{
+  to{transform:translateY(120vh);opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>💖 Valentine 💖</h1>
+  <p>Madhav, will you be my Valentine? 🥹💌</p>
+
+  <div class="love-bar">
+    <div class="love-fill" id="loveFill"></div>
+  </div>
+
+  <div class="buttons">
+    <button id="yesBtn">Yes 💕</button>
+    <button id="noBtn">No 🙃</button>
+  </div>
+
+  <div class="message" id="message">
+    You said YES 🥰✨
+  </div>
+</div>
+
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <h2>💌</h2>
+    <div class="letter" id="letter"></div>
+    <button class="close" onclick="closePopup()">Aww 🥹</button>
+  </div>
+</div>
+
+<div class="final-love" id="finalLove">
+  I love you, Madhav 💘
+  <span>— Grace</span>
+</div>
+
+<!-- 🎧 Music -->
+<audio id="song" loop>
+  <!-- ➤ Replace the src value with your own MP3 file link or local file name -->
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const loveFill = document.getElementById("loveFill");
+const message = document.getElementById("message");
+const popup = document.getElementById("popup");
+const letter = document.getElementById("letter");
+const finalLove = document.getElementById("finalLove");
+const song = document.getElementById("song");
+
+function moveNo(){
+  noBtn.style.transform=`translate(${Math.random()*220-110}px,${Math.random()*140-70}px)`;
+}
+noBtn.addEventListener("mouseover",moveNo);
+noBtn.addEventListener("touchstart",moveNo);
+
+function heart(){
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerText="💖";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=Math.random()*2+3+"s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),5000);
+}
+
+function kiss(){
+  const k=document.createElement("div");
+  k.className="heart";
+  k.innerText="😘";
+  k.style.left=Math.random()*100+"vw";
+  k.style.animationDuration=Math.random()*2+3+"s";
+  document.body.appendChild(k);
+  setTimeout(()=>k.remove(),5000);
+}
+
+const text = `Dear Madhav 💖,
+
+Somewhere between smiles and moments,
+you became my favorite thought,
+my safest feeling,
+and the reason my heart feels full.
+
+Forever yours,
+Grace 💌`;
+
+let i = 0;
+function typeLetter(){
+  if(i < text.length){
+    letter.textContent += text.charAt(i);
+    i++;
+    setTimeout(typeLetter, 45);
+  }
+}
+
+yesBtn.onclick=()=>{
+  loveFill.style.width="100%";
+  message.style.display="block";
+  noBtn.style.display="none";
+  song.play();      // 🎵 Start music
+  setInterval(heart, 220);
+  setInterval(kiss, 600);
+  popup.style.display="flex";
+  letter.textContent="";
+  i = 0;
+  typeLetter();
+};
+
+function closePopup(){
+  popup.style.display="none";
+  finalLove.style.display="flex";
+}
+</script>
+
+</body>
+</html>
